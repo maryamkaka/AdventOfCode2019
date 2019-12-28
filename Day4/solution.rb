@@ -37,4 +37,14 @@ total = (start_key .. end_key).reduce(0) do |count, value|
   count
 end
 puts "Answer: #{total}"
-˜
+
+puts " ----- Part 2 ----- "
+puts "Case 1: #{is_valid(112233, true)}"
+puts "Case 2: #{is_valid(123444, true)}"
+puts "Case 3: #{is_valid(111122, true)}"
+
+total = (start_key .. end_key).reduce(0) do |count, value|
+  count+=1 if is_valid(value, true)
+  count
+end
+puts "Answer: #{total}"
