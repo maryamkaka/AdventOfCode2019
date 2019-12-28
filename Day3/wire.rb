@@ -23,6 +23,7 @@ class Wire
 
   def extract_path(directions)
     current_point = [0,0]
+    total_distance = 0
 
     directions.map do |path|
       direction = path[0]
@@ -30,6 +31,9 @@ class Wire
 
       segment = Segment.new()
       segment.start_point = Point.new(x: current_point[0], y: current_point[1])
+
+      segment.distance_to = total_distance
+      total_distance += len
 
       case direction
       when "R"
@@ -89,7 +93,7 @@ class Point
 end
 
 class Segment
-  attr_accessor :start_point, :end_point, :direction
+  attr_accessor :start_point, :end_point, :direction, :distance_to
 
   def find_poi(other)
     if(direction != other.direction)

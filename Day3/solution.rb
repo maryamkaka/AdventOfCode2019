@@ -28,6 +28,8 @@ wire_one = Wire.new("R8,U5,L5,D3".split(','))
 wire_two = Wire.new("U7,R6,D4,L4".split(','))
 puts "Case 1: #{closest_point(wire_one, wire_two).manhattan_distance_to_origin}"
 
+binding.pry
+
 wire_one = Wire.new("R75,D30,R83,U83,L12,D49,R71,U7,L72".split(","))
 wire_two = Wire.new("U62,R66,U55,R34,D71,R55,D58,R83".split(","))
 puts "Case 2: #{closest_point(wire_one, wire_two).manhattan_distance_to_origin}"
@@ -46,3 +48,4 @@ wire_two = Wire.new(data[1].split(','))
 puts "Answer: #{closest_point(wire_one, wire_two).manhattan_distance_to_origin}"
 
 
+puts " ----- Part 2 ----- "
