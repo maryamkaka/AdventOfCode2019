@@ -7,6 +7,14 @@ class OrbitMap
     @checksum = get_checksum
   end
 
+  def orbital_transfer_distance(obj1_name, obj2_name)
+    obj1_path = get_body(obj1_name).get_path
+    obj2_path = get_body(obj2_name).get_path
+
+    intersection = obj1_path & obj2_path
+    distance = obj1_path.find_index(intersection[0]) + obj2_path.find_index(intersection[0])
+  end
+
   private
 
   attr_accessor :objects
@@ -51,6 +59,16 @@ class Body
 
   def set_orbitting_body(new_body)
     @orbitting_body = new_body
+  end
+
+  def get_path
+    path = []
+    orbit = orbitting_body
+    while orbit != nil
+      path.push(orbit.name)
+      orbit = orbit.orbitting_body
+    end
+    path
   end
 
   def orbit_count
