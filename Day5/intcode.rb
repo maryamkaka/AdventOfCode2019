@@ -48,13 +48,9 @@ class Intcode
       outputs.push(get_parameter_value(1, mode1))
       @pointer +=2
     when 5
-      if(get_parameter_value(1, mode1) != 0)
-        @pointer = get_parameter_value(2, mode2)
-      end
+      @pointer = get_parameter_value(1, mode1) != 0 ? get_parameter_value(2, mode2) : @pointer + 3
     when 6
-      if(get_parameter_value(1, mode1) == 0)
-        @pointer = get_parameter_value(2, mode2)
-      end
+      @pointer = get_parameter_value(1, mode1) == 0 ? get_parameter_value(2, mode2) : @pointer + 3
     when 7
       dest_pointer = memory[pointer + 3]
       memory[dest_pointer] = get_parameter_value(1, mode1) < get_parameter_value(2, mode2) ? 1 : 0

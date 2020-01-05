@@ -22,8 +22,16 @@ puts "Case 10 (input equals 8): #{Intcode.new([3,3,1108,-1,8,3,4,3,99]).run(8).o
 puts "Case 11 (input equals 8): #{Intcode.new([3,3,1108,-1,8,3,4,3,99]).run(20).outputs}, Expected: [0]"
 puts "Case 12 (input less than 8): #{Intcode.new([3,3,1107,-1,8,3,4,3,99]).run(1).outputs}, Expected: [1]"
 puts "Case 13 (input less than 8): #{Intcode.new([3,3,1107,-1,8,3,4,3,99]).run(8).outputs}, Expected: [0]"
-puts "Case 14: #{Intcode.new([
-    3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,
-    1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,
-    999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99,
-  ]).run(6).outputs}, Expected: [999]"
+puts "Case 14 (jump test, position mode): #{Intcode.new([3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9]).run(8).outputs}, Expected: [1]"
+puts "Case 15 (jump test, position mode): #{Intcode.new([3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9]).run(0).outputs}, Expected: [0]"
+
+larger_example = [
+  3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,
+  1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,
+  999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99,
+]
+puts "Case 16: #{Intcode.new(larger_example).run(6).outputs}, Expected: [999]"
+puts "Case 17: #{Intcode.new(larger_example).run(8).outputs}, Expected: [1000]"
+puts "Case 18: #{Intcode.new(larger_example).run(10).outputs}, Expected: [1001]"
+
+puts "Answer: #{Intcode.new(data).run(5).outputs}"
