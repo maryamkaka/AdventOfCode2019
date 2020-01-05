@@ -1,5 +1,5 @@
 class OrbitMap
-  attr_reader :checksum, :objects
+  attr_reader :checksum
 
   def initialize(map)
     @objects = []
@@ -35,32 +35,25 @@ class OrbitMap
   end
 
   def get_checksum
-    @objects.reduce(0) do | count, obj |
-      if(obj == nil || obj.orbit_count == nil)
-        binding.pry
-      end
+    objects.reduce(0) do | count, obj |
       count += obj.orbit_count
     end
   end
 end
 
 class Body
-  attr_reader :name, :orbitting_body, :orbit_count
+  attr_reader :name, :orbitting_body
 
   def initialize(name, orbitting_body = nil)
-    @orbit_count = 0
     @name = name
     set_orbitting_body(orbitting_body) if orbitting_body != nil
   end
 
   def set_orbitting_body(new_body)
     @orbitting_body = new_body
-    @orbit_count = count_orbits
   end
 
-  private
-
-  def count_orbits
+  def orbit_count
     count = 0
 
     orbit = orbitting_body
