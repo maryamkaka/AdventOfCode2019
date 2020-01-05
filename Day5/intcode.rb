@@ -27,7 +27,7 @@ class Intcode
 
     instruction = memory[pointer].to_s.chars
     opcode = instruction.pop(2).join.to_i
-    mode1, mode2, mode3 = instruction.map(&:to_i)
+    mode1, mode2, mode3 = instruction.reverse.map(&:to_i)
 
     case opcode
     when 1

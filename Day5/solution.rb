@@ -9,7 +9,7 @@ puts "Case 4: #{Intcode.new([1101,100,-1,4,0]).run.memory}, Expected: [1101, 100
 puts "Case 5: #{Intcode.new([3,0,4,0,99]).run(30).outputs}, Expected: [30]"
 
 data = File.read('input.txt').split(',').map{|x| x.to_i}.freeze
-# puts "Answer: #{Intcode.new(data).run(1)}"
+puts "Answer: #{Intcode.new(data).run(1).outputs}"
 
 
 # Part 2
