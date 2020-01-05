@@ -39,12 +39,30 @@ class Intcode
       memory[dest_pointer] = get_parameter_value(1, mode1) * get_parameter_value(2, mode2)
       @pointer += 4
     when 3
+      raise "Missing input" if @input == nil
+
       dest_pointer = memory[pointer + 1]
       memory[dest_pointer] = @input
       @pointer +=2
     when 4
       outputs.push(get_parameter_value(1, mode1))
       @pointer +=2
+    when 5
+      if(get_parameter_value(1, mode1) != 0)
+        @pointer = get_parameter_value(2, mode2)
+      end
+    when 6
+      if(get_parameter_value(1, mode1) == 0)
+        @pointer = get_parameter_value(2, mode2)
+      end
+    when 7
+      dest_pointer = memory[pointer + 3]
+      memory[dest_pointer] = get_parameter_value(1, mode1) < get_parameter_value(2, mode2) ? 1 : 0
+      @pointer += 4
+    when 8
+      dest_pointer = memory[pointer + 3]
+      memory[dest_pointer] = get_parameter_value(1, mode1) == get_parameter_value(2, mode2) ? 1 : 0
+      @pointer += 4
     when 99
       @pointer = nil
       return
